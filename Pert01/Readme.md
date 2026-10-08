@@ -90,7 +90,7 @@ Keluaran:
     Ditolak: Penarikan ditolak: Saldo tidak mencukupi (Saldo tidak boleh negatif).
     PS D:\PBO-Tugas1\php> 
 
-![Keluaran	PHP](Docs/docs/04-output-php.png) 
+![Keluaran	PHP](Docs/docs04-output-php.png) 
 
 ###	2.3	Invarian	yang	saya	tegakkan 
 
