@@ -14,108 +14,99 @@ DOSEN       : Adi Wahyu Pribadi, S.Si., M.Kom
 
 
 ## Java
-a. Mahasiswa.java
+a. RekeningBank.java
 
-Kelas Mahasiswa digunakan untuk menyimpan data mahasiswa berupa NIM, nama, nilai tugas, nilai UTS, dan nilai UAS. Atribut nim dibuat final karena tidak boleh berubah setelah data mahasiswa dibuat. Setiap nilai divalidasi agar berada pada rentang 0–100 sehingga data yang disimpan tetap valid. Nilai akhir dihitung menggunakan bobot 30% tugas, 30% UTS, dan 40% UAS, kemudian digunakan untuk menentukan huruf mutu mahasiswa.
+Kalau yang JAVA ini udah versi jadi dan udah diperbaiki semua. Angka ajaibnya udah diganti jadi konstanta pakai public static final biar rapi. Udah ada field statis jumlahRekening buat ngitung objek. Constructornya ada dua, yang ringkas manggil yang lengkap pakai this() jadi gak dobel hitung. Validasi udah lengkap, nomor gak boleh kosong, saldo gak boleh minus, setor tarik harus positif, tarik gak boleh lebih dari saldo dan gak boleh lebih dari 5 juta. Potong admin juga udah aman gak bikin saldo minus karena pakai Math.max.
 
 Screenshot = 
 
 - Before :
   
-![Output sebelum](IMAGES/BEFORE/mahasiswajava1.png)
-
+![Output sebelum](IMAGES/BEFORE/rbj12345.png)
 TODO 1 digunakan untuk membuat atribut pada kelas Mahasiswa. Atribut nim dibuat final karena tidak boleh berubah setelah mahasiswa terdaftar.
 TODO 2 digunakan untuk memeriksa apakah NIM kosong atau null. Jika tidak valid, program harus menolak data dengan IllegalArgumentException.
 TODO 3 digunakan untuk memastikan nilai tugas, UTS, dan UAS berada pada rentang 0 sampai 100. Jika ada nilai di luar batas tersebut, data tidak boleh disimpan.
 TODO 4 membuat method bantuan untuk validasi nilai agar kode tidak ditulis berulang kali pada setiap komponen nilai.
 TODO 5 digunakan untuk menghitung nilai akhir menggunakan bobot 30% tugas, 30% UTS, dan 40% UAS.
+
+![Output sebelum](IMAGES/BEFORE/rbj678910.png)
 TODO 6 digunakan untuk menentukan huruf mutu berdasarkan nilai akhir yang diperoleh mahasiswa, mulai dari A sampai E.
 TODO 7 digunakan untuk menyediakan getter agar data seperti NIM, nama, dan nilai akhir dapat dibaca dari luar kelas tanpa mengubah isi datanya.
 
 - After :
   
-![Output Sesudah](IMAGES/AFTER/mj1.png)
+![Output sesudah](IMAGES/AFTER/rbj12345.png)
+TODO 1 digunakan untuk mendefinisikan konstanta bunga_tahunan, biaya_administrasi, dan batas_penarikan_sekali menggunakan public static final agar nilai acak (magic numbers) tidak digunakan langsung di dalam method.
+TODO 2 digunakan untuk mendeklarasikan field statis jumlahRekening bertipe private static int dengan nilai awal 0 untuk menghitung total objek rekening yang pernah dibuat.
+TODO 3 digunakan untuk menerapkan delegasi constructor pada constructor ringkas dengan memanggil this(nomor, pemilik, 0) agar tidak terjadi duplikasi kode validasi.
+TODO 4 digunakan untuk memeriksa apakah nomor rekening bernilai null atau kosong, serta memastikan saldo awal tidak bernilai negatif dengan melempar IllegalArgumentException jika tidak valid.
+TODO 5 digunakan untuk menaikkan nilai variabel jumlahRekening++ khusus di dalam constructor lengkap agar total rekening tidak terhitung dua kali saat constructor ringkas dipanggil.
 
-Pada TODO 1 dilakukan pembuatan atribut nim, nama, nilaiTugas, nilaiUts, dan nilaiUas. Atribut nim dibuat menggunakan final karena tidak boleh berubah setelah data mahasiswa dibuat.
-
-![Output Sesudah](IMAGES/AFTER/mj23.png)
-
-Pada TODO 2 dan TODO 3 ditambahkan validasi untuk memastikan NIM tidak kosong serta semua nilai berada pada rentang 0 sampai 100. Jika data tidak sesuai aturan, program akan menolak data tersebut dengan IllegalArgumentException.
-
-![Output Sesudah](IMAGES/AFTER/mj456.png)
-
-Pada TODO 4 dibuat method privat pastikanNilaiSah() untuk memeriksa validitas nilai sehingga kode lebih rapi dan tidak berulang.
-Pada TODO 5 ditambahkan perhitungan nilai akhir berdasarkan bobot 30% tugas, 30% UTS, dan 40% UAS.
-Pada TODO 6 ditambahkan method untuk menentukan huruf mutu A, B, C, D, atau E sesuai nilai akhir mahasiswa.
-
-![Output Sesudah](IMAGES/AFTER/mj7.png)
-
-Pada TODO 7 ditambahkan getter untuk mengakses data NIM, nama, dan nilai akhir tanpa mengubah isi atribut yang sudah tersimpan.
+![Output sesudah](IMAGES/AFTER/rbj678910.png)
+TODO 6 digunakan untuk mengecek dan menolak jumlah setoran yang bernilai kurang dari atau sama dengan nol sebelum ditambahkan ke saldo.
+TODO 7 digunakan untuk menolak transaksi penarikan jika jumlahnya kurang dari atau sama dengan nol, melebihi sisa saldo, atau melebihi batas penarikan sekali transaksi.
+TODO 8 digunakan untuk memotong saldo sebesar biaya administrasi dengan memastikan nilai saldo tidak bernilai negatif menggunakan Math.max.
+TODO 9 digunakan untuk menyediakan method statis getJumlahRekening guna mengembalikan total rekening yang telah dibuat.
+TODO 10 digunakan untuk menyediakan method statis utilitas bungaSetahun guna menghitung perkalian antara nilai pokok dengan konstanta bunga tahunan.
 
 b. Main.java
 
-Program ini dipakai buat ngetes apakah kelas Mahasiswa sudah berjalan dengan benar. Pertama, program membuat beberapa data mahasiswa lalu menampilkan nilai akhirnya. Setelah itu, program mencoba memasukkan data yang salah, seperti nilai lebih dari 100 dan NIM kosong, untuk memastikan sistem bisa menolak data yang tidak sesuai aturan.
+Main di JAVA ini udah jadi alat tes final. Di sini dibikin 3 objek yaitu Ani, Budi, Citra buat buktiin kalau jumlahRekening kehitung 3 bukan 4. Terus ada tes setor 500rb ke Ani, tes tarik 9 juta yang harusnya ditolak, tes potong admin di Budi yang saldonya 0 biar gak minus, sama tes hitung bunga setahun pakai method static. Jadi Main JAVA ini buat nunjukin kalau semua perbaikan di class RekeningBank udah berhasil.
 
 Screenshot = 
 
 - Before :
   
-![Output sebelum](IMAGES/BEFORE/mainjava1.png)
+![Output sebelum](IMAGES/BEFORE/mj.png)
+Sebelum diperbaiki, pas program Main dijalankan hasilnya masih berantakan. Jumlah rekening yang kebaca itu 4, padahal yang dibuat cuma 3 rekening yaitu Ani, Budi, dan Citra. Terus pas coba tarik uang 9 juta dari saldo Ani yang cuma 1,5 juta, penarikannya masih bisa lolos harusnya kan ditolak. Sama juga pas rekening Budi yang saldonya 0 dipotong biaya admin, saldonya jadi minus. Jadi validasinya belum jalan.
 
-Program Main dipakai untuk mencoba kelas Mahasiswa yang sudah dibuat. Pertama, program menampilkan data beberapa mahasiswa beserta nilai akhir dan huruf mutunya. Setelah itu, program mencoba memasukkan data yang tidak sesuai aturan, seperti nilai di atas 100 dan NIM kosong, untuk melihat apakah validasi pada kelas Mahasiswa sudah bekerja dengan benar.
 
 - After :
   
-![Output Sesudah](IMAGES/AFTER/mainj1.png)
+![Output Sesudah](IMAGES/AFTER/mj.png)
+Sesudah diperbaiki di bagian RekeningBank, semua jadi normal. Jumlah rekening sekarang sudah kebaca 3 sesuai yang dibuat. Penarikan yang melebihi saldo sudah otomatis ditolak dan muncul pesan error. Potong biaya admin juga sudah aman, saldo Budi tidak jadi minus tetap 0. Untuk bunga setahun juga sudah bisa dihitung dengan benar. Jadi program sudah sesuai sama yang diminta di soal.
 
-Pada kelas Main, dibuat beberapa objek Mahasiswa untuk menguji apakah program sudah berjalan sesuai ketentuan. Data mahasiswa yang valid akan ditampilkan beserta nilai akhir dan huruf mutunya. Selain itu, program juga menguji proses validasi dengan memasukkan nilai yang melebihi batas dan NIM yang kosong. Jika validasi berhasil, program akan menolak data tersebut dan menampilkan pesan kesalahan.
+
 
 ## PHP
-a. Mahasiswa.php
+a. RekeningBank.php
+
+Kode PHP ini masih mentah dan belum jadi. Semua method masih TODO dan belum ada isinya, jadi cuma kerangka doang. Konstanta bunga, biaya admin, sama batas tarik belum dibikin, masih pakai angka langsung. Jumlah rekening juga belum kehitung karena properti statisnya belum ada. Constructornya cuma satu tapi pakai default parameter karena di PHP emang gak bisa bikin dua constructor. Method setor, tarik, sama potong admin masih kosong jadi belum ada validasi sama sekali.
 
 Bukti Screenshot =
 
 - Before :
 - 
-![Output sebelum](IMAGES/BEFORE/mahasiswaphp1.png)
-
-Pada TODO 1 ditambahkan atribut nim, nama, nilaiTugas, nilaiUts, dan nilaiUas menggunakan constructor property promotion. Atribut nim dan nama dibuat readonly agar tidak dapat diubah setelah objek dibuat.
-Pada TODO 2 dan TODO 3 ditambahkan validasi untuk memastikan NIM tidak kosong serta nilai tugas, UTS, dan UAS berada pada rentang 0 sampai 100.
-Pada TODO 4 dibuat method pastikanNilaiSah() untuk memeriksa validitas nilai sehingga proses validasi tidak perlu ditulis berulang kali.
-Pada TODO 5 ditambahkan perhitungan nilai akhir menggunakan bobot 30% tugas, 30% UTS, dan 40% UAS.
-Pada TODO 6 ditambahkan method untuk menentukan huruf mutu berdasarkan nilai akhir mahasiswa.
-Pada TODO 7 ditambahkan getter untuk mengambil data NIM dan nama tanpa mengubah nilai atribut yang sudah ada.
+![Output sebelum](IMAGES/BEFORE/rbp1234567.png)
+![Output sebelum](IMAGES/BEFORE/rbp8910.png)
+Kode awalnya masih pakai PHP dan semuanya masih TODO. Jadi belum ada konstanta untuk bunga, biaya admin, sama batas tarik. Penghitung jumlah rekening juga belum dibikin. Constructor masih berantakan, validasi nomor kosong sama saldo negatif belum ada. Method setor, tarik, potongBiayaAdmin, getJumlahRekening, sama bungaSetahun semuanya masih kosong atau return asal. Intinya program belum bisa jalan sesuai studi kasus.
 
 - After :
   
-![Output Sesudah](IMAGES/AFTER/mp123.png)
+![Output Sesudah](IMAGES/AFTER/rbp1234567.png)
+TO DO 1 & 2. Angka ajaib diganti jadi konstanta bunga_tahunan, biaya_administrasi, batas_penarikan_sekali dan ditambah field static jumlahRekening untuk menghitung objek.
+TO DO 3, 4, & 5. Constructor ringkas didelegasikan pakai this(nomor, pemilik, 0) biar gak duplikat kode. Validasi nomor kosong dan saldo negatif hanya di constructor lengkap, dan increment jumlahRekening++ juga hanya di situ biar gak kehitung dobel.
+![Output Sesudah](IMAGES/AFTER/rbp8910.png)
+TO DO6 & 7. setor dan tarik diberi validasi harus > 0. Untuk tarik ditambah 2 validasi lagi yaitu tidak boleh melebihi saldo dan tidak boleh melebihi batas 5 juta.
+TO DO 8. potongBiayaAdmin pakai Math.max(0, saldo - biaya) agar saldo tidak minus.
+TO DO 9 & 10. getJumlahRekening dan bungaSetahun dijadikan static karena tidak tergantung pada data objek tertentu.
 
-Pada TODO 1 ditentukan atribut yang digunakan untuk menyimpan data mahasiswa. Atribut nim dan nama dibuat readonly sehingga nilainya tidak dapat diubah setelah objek dibuat.
-Pada TODO 2 dan TODO 3 ditambahkan validasi untuk memastikan NIM tidak kosong dan seluruh nilai berada pada rentang 0 sampai 100.
 
-![Output Sesudah](IMAGES/AFTER/mp456.png)
-
-Pada TODO 4 dibuat method pastikanNilaiSah() agar proses validasi nilai dapat digunakan kembali tanpa menulis kode yang sama berulang kali.
-Pada TODO 5 ditambahkan perhitungan nilai akhir berdasarkan bobot tugas 30%, UTS 30%, dan UAS 40%.
-Pada TODO 6 ditambahkan fungsi untuk menentukan huruf mutu berdasarkan nilai akhir yang diperoleh mahasiswa.
-
-![Output Sesudah](IMAGES/AFTER/mp7.png)
-
-Pada TODO 7 ditambahkan getter untuk mengambil data NIM dan nama, tanpa memberikan akses untuk mengubah data tersebut.
 
 
 b. Main.php
+
+Main di PHP itu fungsinya buat ngetes class RekeningBank yang masih TODO. Jadi pas dijalanin pasti masih error atau return -1 karena getJumlahRekening sama bungaSetahun belum dibenerin. Biasanya main PHP cuma echo jumlah rekening, bikin objek baru, terus coba setor tarik, tapi karena validasinya belum ada hasilnya masih ngaco.
 
 Bukti Screenshot = 
 
 - Before :
   
-![Output sebelum](IMAGES/BEFORE/mainphp1.png)
+![Output sebelum](IMAGES/BEFORE/mp.png)
+Sebelum class RekeningBank diperbaiki, Main PHP ini pas dijalanin hasilnya masih salah semua. Jumlah rekening di awal bukan 0 tapi -1 karena getJumlahRekening() masih return asal. Pas bikin 3 rekening, jumlahnya gak jadi 3 karena penghitungnya belum jalan dan named constructor rekeningPelajar() masih throw error TODO. Operasi setor gak nambah saldo, tarik 9 juta masih lolos gak ketolak, potong admin bikin saldo minus, sama bunga setahun return 0.
 
-File main.php digunakan untuk menguji apakah kelas Mahasiswa sudah berjalan dengan baik. Program membuat beberapa objek mahasiswa, lalu menampilkan data mahasiswa beserta nilai akhir dan huruf mutunya. Setelah itu dilakukan pengujian dengan memasukkan data yang tidak valid, seperti nilai di atas 100 dan NIM kosong, untuk memastikan validasi yang dibuat dapat menolak data yang tidak sesuai aturan.
 
 - After :
   
-![Output Sesudah](IMAGES/AFTER/mainp1.png)
-
-File main.php digunakan sebagai program utama untuk mencoba kelas Mahasiswa. Program membuat beberapa data mahasiswa, lalu menampilkan hasil perhitungan nilai akhir dan huruf mutunya. Selain itu, program juga menguji validasi dengan memasukkan data yang salah, seperti nilai di atas 100 dan NIM kosong, sehingga dapat diketahui apakah aturan yang dibuat sudah berjalan dengan benar.
+![Output Sesudah](IMAGES/AFTER/mp.png)
+Sesudah RekeningBank diperbaiki, Main PHP ini udah jalan normal. Jumlah awal 0, setelah bikin Ani, Budi, Citra jumlahnya jadi 3 sesuai harapan. Ani setor 500rb saldonya jadi 1,5jt. Tarik 9jt langsung ketolak dan muncul pesan Ditolak. Budi yang saldo 0 pas dipotong admin tetap 0 gak minus. Bunga setahun dari saldo Ani juga udah kehitung bener pakai 2,5%.
