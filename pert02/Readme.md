@@ -78,7 +78,7 @@ Bukti Screenshot =
 - Before :
 - 
 ![Output sebelum](IMAGES/BEFORE/mahasiswaphp1.png)
-
+C
 Pada TODO 1 ditambahkan atribut nim, nama, nilaiTugas, nilaiUts, dan nilaiUas menggunakan constructor property promotion. Atribut nim dan nama dibuat readonly agar tidak dapat diubah setelah objek dibuat.
 Pada TODO 2 dan TODO 3 ditambahkan validasi untuk memastikan NIM tidak kosong serta nilai tugas, UTS, dan UAS berada pada rentang 0 sampai 100.
 Pada TODO 4 dibuat method pastikanNilaiSah() untuk memeriksa validitas nilai sehingga proses validasi tidak perlu ditulis berulang kali.
