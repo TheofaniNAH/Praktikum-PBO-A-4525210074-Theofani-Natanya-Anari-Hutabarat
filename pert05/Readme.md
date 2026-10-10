@@ -20,15 +20,16 @@ a. AntiPattern.java
 Screenshot = 
 
 - Before :
-  
+
 ![Output sebelum](IMAGES/BEFORE/AJ.png)
 
+perhitungan luas bangun datar dilakukan menggunakan if-else dan instanceof untuk memeriksa tipe objek. Setiap kali ada bangun datar baru, method hitungLuas() harus diubah dengan menambahkan cabang kondisi baru, sehingga kode menjadi kurang fleksibel dan sulit dikembangkan.
 
 - After :
   
 ![Output sesudah](IMAGES/AFTER/AJ.png)
 
-
+program direfaktor menggunakan konsep polimorfisme dengan membuat interface atau kelas induk yang memiliki method luas(). Setiap bangun datar mengimplementasikan perhitungan luasnya masing-masing sehingga tidak diperlukan lagi pengecekan tipe objek menggunakan if-else maupun instanceof. Kode menjadi lebih rapi, mudah dipelihara, dan lebih mudah dikembangkan.
 
 b. AntiPatternRefaktor.java
 
@@ -180,7 +181,7 @@ Screenshot =
 
 - After :
   
-![Output sebelum](IMAGES/BEFORE/NP1.png)
+![Output sebelum](IMAGES/AFTER/NP1.png)
 ![Output Sesudah](IMAGES/AFTER/NP2.png)
 
 TODO 1 - Dibuat kelas abstrak Notifikasi yang berisi properti tujuan serta method abstrak kirim() dan saluran() sebagai kontrak bagi seluruh jenis notifikasi.
